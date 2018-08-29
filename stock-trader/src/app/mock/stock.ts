@@ -53,3 +53,5 @@ export const mockList = [{
   {"id": 48, "name": "Hancock Holding Company", "price": "307.58", "category": "Finance"},
   {"id": 49, "name": "Miller Industries, Inc.", "price": "478.41", "category": "Capital Goods"},
   {"id": 50, "name": "China Information Technology, Inc.", "price": "391.70", "category": "Technology"}]
+
+export const moneyAmount: number = 10000;

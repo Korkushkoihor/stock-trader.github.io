@@ -1,16 +1,16 @@
 <mat-card class="example-card">
   <mat-card-header>
     <mat-card-title>Total price of all bought stocks:</mat-card-title>
-    <mat-card-subtitle>14553 $</mat-card-subtitle>
+    <mat-card-subtitle>{{activeSumMarkets.toFixed(2)}} $</mat-card-subtitle>
   </mat-card-header>
 </mat-card>
 
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-  <ng-container matColumnDef="title">
+  <ng-container matColumnDef="name">
     <th mat-header-cell *matHeaderCellDef> Title</th>
-    <td mat-cell *matCellDef="let element"> {{element.title}}</td>
+    <td mat-cell *matCellDef="let element"> {{element.name}}</td>
   </ng-container>
 
   <ng-container matColumnDef="price">
@@ -20,9 +20,15 @@
 
   <ng-container matColumnDef="quantity">
     <th mat-header-cell *matHeaderCellDef> Quantity</th>
+    <td mat-cell *matCellDef="let element"> {{element.quantity}}</td>
+  </ng-container>
+
+
+  <ng-container matColumnDef="quantityToSell">
+    <th mat-header-cell *matHeaderCellDef> Quantity to Sell</th>
     <td mat-cell *matCellDef="let element">
       <mat-form-field class="example-full-width">
-        <input matInput>
+        <input [(ngModel)]="element.quantityToBS" matInput type="number" min="0" step="1">
       </mat-form-field>
     </td>
   </ng-container>
@@ -31,7 +37,7 @@
   <ng-container matColumnDef="sell">
     <th mat-header-cell *matHeaderCellDef> Sell</th>
     <td mat-cell *matCellDef="let element">
-      <button mat-button>Sell</button>
+      <button (click)="sellMarket(element)" mat-button>Sell</button>
     </td>
   </ng-container>
 

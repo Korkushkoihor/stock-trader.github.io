@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {StockService} from "../../services/stock.service";
+import {MatSort, MatTableDataSource} from "@angular/material";
 
 export interface PeriodicElement {
   title: string;
@@ -19,12 +20,22 @@ const ELEMENT_DATA: PeriodicElement[] = [
   templateUrl: './list-of-markets.component.html',
   styleUrls: ['./list-of-markets.component.css']
 })
-export class ListOfMarketsComponent {
-  displayedColumns: string[] = ['title', 'price', 'quantity', 'buy'];
-  dataSource = ELEMENT_DATA;
+export class ListOfMarketsComponent implements OnInit {
+  @ViewChild(MatSort) sort: MatSort;
+  displayedColumns: string[] = ['name', 'price', 'quantity', 'buy'];
+  dataSource = new MatTableDataSource([]);
 
-  constructor(private stockService: StockService){
+  constructor(private stockService: StockService) {
 
+  }
+
+  ngOnInit() {
+    this.dataSource = new MatTableDataSource(this.stockService.arrayStock);
+    this.dataSource.sort = this.sort;
+  }
+
+  buyMarket(_market) {
+    this.stockService.buyMarket(_market, _market['quantityToBS']);
   }
 }
 

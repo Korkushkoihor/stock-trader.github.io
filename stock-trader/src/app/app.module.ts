@@ -10,6 +10,7 @@ import {MatTabsModule, MatToolbarModule} from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 import {StockService} from "./services/stock.service";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import {StockService} from "./services/stock.service";
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    FormsModule,
 
     MatToolbarModule,
     MatTabsModule,
