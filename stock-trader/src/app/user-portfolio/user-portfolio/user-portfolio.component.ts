@@ -48,7 +48,9 @@ export class UserPortfolioComponent implements OnInit, OnChanges {
   }
 
   public sellMarket(_market: MarketBoughtModel) {
-    this.stockService.sellMarket(_market, _market.quantityToBS);
+    if (_market.quantityToBS){
+      this.stockService.sellMarket(_market, +_market.quantityToBS.toFixed());
+    }
   }
 
   ngOnChanges() {

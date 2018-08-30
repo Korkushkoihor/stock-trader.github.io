@@ -35,7 +35,9 @@ export class ListOfMarketsComponent implements OnInit {
   }
 
   buyMarket(_market) {
-    this.stockService.buyMarket(_market, _market['quantityToBS']);
+    if (_market['quantityToBS']) {
+      this.stockService.buyMarket(_market, +_market['quantityToBS'].toFixed());
+    }
   }
 }
 
